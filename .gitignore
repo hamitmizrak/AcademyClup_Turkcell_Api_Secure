@@ -1,5 +1,7 @@
 # Special Data
 .node_modules
+log
+database_memory_persist
 
 HELP.md
 target/

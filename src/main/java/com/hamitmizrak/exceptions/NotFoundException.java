@@ -1,6 +1,4 @@
-package com.hamitmizrak.utils;
-
-import java.util.Objects;
+package com.hamitmizrak.exceptions;
 
 public class NotFoundException extends RuntimeException{
 

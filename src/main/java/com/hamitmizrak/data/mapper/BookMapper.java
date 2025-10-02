@@ -16,11 +16,27 @@ public final class BookMapper {
 
     //
       public static BookDto toDto(BookEntity b) {
-        return null;
+          return new BookDto(
+                  b.getId(),
+                  b.getTitle(),
+                  b.getAuthor(),
+                  b.getYearPublished(),
+                  b.getVersion(),
+                  b.getCreatedAt(),
+                  b.getUpdatedAt()
+          );
     }
 
     //
-    /*  public static BookDto toEntity(Book b) {
-        return new BookDto()
-    }*/
+      public static BookEntity toEntity(BookDto b) {
+          return new BookEntity(
+                  b.id(),
+                  b.title(),
+                  b.author(),
+                  b.yearPublished(),
+                  b.version(),
+                  b.createdAt(),
+                  b.updatedAt()
+          );
+    }
 }

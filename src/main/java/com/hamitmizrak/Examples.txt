@@ -1,0 +1,10 @@
+S1-) Normal Constructor ile @PostConstructor bunlardan ilk çalışan hangisidir ?
+S1-) @NotBlank  - @NotNull            ==> bu iki yapı arasındaki farklar Nelerdir ?
+S2-) public final class BookMapper{}  ==> Buradaki final class ne özellik veriyor ?
+S2-) Constructorda private verirsek ne olurdu ? ==>
+eg:  private BookMapper() {}
+
+S2-)  buradaki fiedl ınjection vermemezin nedeni nedir ?
+ @Autowired
+ private IBookRepository iBookRepository;
+

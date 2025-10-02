@@ -26,7 +26,8 @@ import java.util.TimeZone;
 // @EnableCaching
 
 // Auditing Aktif etmek
-// @EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
+// @EnableJpaAuditing // = JPA Auditing anotasyon aktif eder
 
 // Spring Security: Şimdilik dahil etme, çünkü Bcrypted kullancağım ancak Spring security için gerekli kütüphaneleri dahil
 // Buradaki exclude ne zaman kapatmam gerekiyor ? cevap: Spring Security ile çalıştığımız zaman kapat
@@ -39,9 +40,8 @@ import java.util.TimeZone;
         //RedisAutoConfiguration.class,
 }
 )
-//@SpringBootApplication
+//@SpringBootApplication  // @Configuration + @EnableAutoConfiguration + @ComponentScan
 public class AcademyClupTurkcellApiSecureApplication {
-
 
     // PostConstruct
     // Örneğin, veri hazırlığı, bağlantı oluşturma, bir değişkenin başlatılması gibi işlemler burada yapılabilir.

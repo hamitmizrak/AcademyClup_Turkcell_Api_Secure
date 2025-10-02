@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
 // LOMBOK
 @RequiredArgsConstructor
@@ -31,10 +32,10 @@ public class BookService {
     private final IBookRepository iBookRepository;
 
     // Arama: q parametresi+Sayfalama
-    public Page<BookDto> list(String q, org.springframework.data.domain.Pageable pageable) {
+    public Page<BookDto> list(String q, Pageable pageable) {
         Page<BookEntity> page = (q == null || q.isEmpty() || q.isBlank())
                 ? iBookRepository.findAll(pageable)
-                : iBookRepository.findByTitleContainingIgnoreCase(q, (java.awt.print.Pageable) pageable);
+                : iBookRepository.findByTitleContainingIgnoreCase(q, pageable);
         return page.map(BookMapper::toDto);
     }
 

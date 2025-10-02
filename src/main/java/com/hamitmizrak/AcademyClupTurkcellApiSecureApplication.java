@@ -26,7 +26,7 @@ import java.util.TimeZone;
 // @EnableCaching
 
 // Auditing Aktif etmek
-@EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
+//@EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
 // @EnableJpaAuditing // = JPA Auditing anotasyon aktif eder
 
 // Spring Security: Şimdilik dahil etme, çünkü Bcrypted kullancağım ancak Spring security için gerekli kütüphaneleri dahil

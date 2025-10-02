@@ -1,0 +1,18 @@
+# Ekle (201 Created)
+curl -X POST http://localhost:4444/api/v1.0.0/books \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Effective Java","author":"Joshua Bloch","yearPublished":2018}'
+
+# Find
+curl 'http://localhost:4444/api/v1.0.0/1'
+
+# Liste (sayfalı)
+curl 'http://localhost:4444/api/v1.0.0/books?page=0&size=5&sort=title,asc'
+
+# Güncelle (409 için version uyuşmazlığı deneyebilirsiniz)
+curl -X PUT http://localhost:4444/api/v1.0.0/books/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Effective Java 3e","author":"Joshua Bloch","yearPublished":2018,"version":0}'
+
+# Sil (204)
+curl -X DELETE http://localhost:4444/api/v1.0.0/books/1

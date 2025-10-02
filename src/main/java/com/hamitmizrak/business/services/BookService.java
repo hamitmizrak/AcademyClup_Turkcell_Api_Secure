@@ -6,12 +6,11 @@ import com.hamitmizrak.business.dto.UpdateBookReq;
 import com.hamitmizrak.data.entity.BookEntity;
 import com.hamitmizrak.data.mapper.BookMapper;
 import com.hamitmizrak.data.repository.IBookRepository;
-import com.hamitmizrak.utils.HamitMizrakException;
-import com.hamitmizrak.utils.NotFoundException;
+import com.hamitmizrak.exceptions.HamitMizrakException;
+import com.hamitmizrak.exceptions.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 // LOMBOK
@@ -42,7 +41,7 @@ public class BookService {
     // FIND
     public BookDto get(Long id) {
         BookEntity bookEntity = iBookRepository.findById(id)
-                .orElseGet(() -> throw new HamitMizrakException("id bulunamadı"));
+                .orElseThrow(() -> new HamitMizrakException(id+ " nolu id değer yoktur " ));
         return BookMapper.toDto(bookEntity);
     }
 
@@ -58,7 +57,7 @@ public class BookService {
     // UPDATE
     @Transactional
     public BookDto update(Long id, UpdateBookReq req) {
-        BookEntity bookEntity = iBookRepository.findById(id).orElseGet(()-> throw  HamitMizrakException("id bulunamadı"));
+        BookEntity bookEntity = iBookRepository.findById(id).orElseThrow(()-> new HamitMizrakException(id+ " nolu id değer yoktur " ));
 
         // Locking uyuşmazlığı
         if(!req.version().equals(bookEntity.getVersion())){
@@ -76,7 +75,7 @@ public class BookService {
 
     // DELÊTE Kayıt yoksa 404 fırlat
     @Transactional
-    public void delete(Long id) {
+    public void deleteById(Long id) {
        if(!iBookRepository.existsById(id)) NotFoundException.of("Book",id);
       iBookRepository.deleteById(id);
     }

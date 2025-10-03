@@ -1,5 +1,6 @@
 package com.hamitmizrak.controller.api;
 
+import com.hamitmizrak.Frontend;
 import com.hamitmizrak.business.dto.BookDto;
 import com.hamitmizrak.business.dto.CreateBookReq;
 import com.hamitmizrak.business.dto.UpdateBookReq;
@@ -17,6 +18,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/api/v1.0.0/books") // <<<<<< v1.0.0
 @RequiredArgsConstructor
+@CrossOrigin
+//@CrossOrigin(originPatterns = Frontend.REACT_URL)
 public class BookApi {
 
     private final BookService bookService;

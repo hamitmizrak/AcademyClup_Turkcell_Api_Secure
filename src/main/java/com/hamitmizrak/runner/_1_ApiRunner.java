@@ -6,29 +6,28 @@ import com.hamitmizrak.business.services.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Uygulama başlangıcında örnek veriler ekleyen Runner.
- * Varsayılan kapalıdır. Etkinleştirmek için:
- * api.seed.enabled=true
- */
+// LOMBOK
+@RequiredArgsConstructor
 @Slf4j
 @Component
-@RequiredArgsConstructor
-//@ConditionalOnProperty(name = "api.seed.enabled", havingValue = "true") //Profile
 @Order(1)
-public class ApiRunner implements CommandLineRunner {
+//@ConditionalOnProperty(name = "api.seed.enabled", havingValue = "true") //Profile
+public class _1_ApiRunner implements CommandLineRunner {
 
+    // D.I
     private final BookService bookService;
 
+
+    // RUNNING
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws Exception {
+
         long total = bookService.list(null, PageRequest.of(0, 1)).getTotalElements();
         if (total > 0) {
             log.info("Seed atlandı: zaten {} kayıt var.", total);
@@ -44,10 +43,13 @@ public class ApiRunner implements CommandLineRunner {
                 new CreateBookReq("Clean Architecture", "Robert C. Martin", 2017)
         );
 
+
         for (CreateBookReq req : seeds) {
             BookDto dto = bookService.create(req);
             log.info("Eklendi -> id={}, title='{}'", dto.id(), dto.title());
         }
+
+
 
         long after = bookService.list(null, PageRequest.of(0, 1)).getTotalElements();
         log.info("Seed tamam: toplam kayıt = {}", after);

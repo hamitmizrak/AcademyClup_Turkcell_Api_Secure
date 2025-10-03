@@ -8,7 +8,7 @@ public record BookDto(
         Long id,
         String title,
         String author,
-        int yearPublished,
+        Integer yearPublished,
         Long version,
         Instant createdAt,
         Instant updatedAt
